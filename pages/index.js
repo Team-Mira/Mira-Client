@@ -1,13 +1,25 @@
-import Head from 'next/head';
-import Link from 'next/link'
-import Image from 'next/image';
-import Layout from '../components/Layout'
-import styles from '../styles/Home.module.css';
+import LoginButton from "../components/Buttons/LoginButton";
+import SignoutButton from "../components/Buttons/SignoutButton"
+
+import { useSession } from 'next-auth/react'
+
 
 export default function Home() {
+  const { data: session } = useSession()
+
+  if(!session){
+    return (
+      <div>
+        <h1>Hello</h1>
+        <LoginButton />
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.container}>
-      <Layout />
+    <div>
+      <h1>Logged in</h1>
+      <SignoutButton />
     </div>
   );
 }
