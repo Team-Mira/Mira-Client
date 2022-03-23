@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from "next/router";
 
 
-export default function NavBar(){
+export default function DrawerNav(){
   const { data: session } = useSession()
   const router = useRouter()
 
@@ -25,7 +25,7 @@ export default function NavBar(){
       <Drawer {...drawerProps} hidden={session ? false : true}>
 
         <Toolbar>
-          <Typography sx={{ pr: 5 }}>{user.name}</Typography>
+          {/* <Typography sx={{ pr: 5 }}>{user.name}</Typography> */}
           <IconButton sx={{ p: 0 }}>
             <Avatar alt="discord_avatar" src={user.image} />
           </IconButton>

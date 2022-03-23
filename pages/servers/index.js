@@ -1,24 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
+import fetchGuilds from '../../externalAPI/fetchGuilds'
 import ServerCard from '../../components/Cards/ServerCard'
-import axios from 'axios'
 
-export default function Channels () {
-    const [servers, setServers] = useState([])
-    const {data: session} = useSession()
-
-    const fetchServers = async () => {
-        if(!session){
-            return []
-        }
-        const { id } = session.user
-        const { data } = await axios.post('/api/servers', { id })
-        setServers(data)
-    }
-
-    useEffect(() => {
-        fetchServers()
-    }, [])
+export default function Channels (props) {
+    const {session, servers} = props
 
     if(!session){
         return <></>
@@ -31,3 +16,26 @@ export default function Channels () {
         </div>
     )
 }
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context)
+
+    if(session){
+        const id = session.user.id
+        const servers = await fetchGuilds(id)
+        return {
+            props: {
+            session,
+            servers
+            },
+        }
+    } else {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
+}
+
