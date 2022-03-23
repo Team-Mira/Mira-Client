@@ -1,8 +1,10 @@
 import { getSession } from 'next-auth/react'
+import { getToken } from 'next-auth/jwt'
+import { Stack } from '@mui/material'
 import fetchGuilds from '../../externalAPI/fetchGuilds'
 import ServerCard from '../../components/Cards/ServerCard'
 
-export default function Channels (props) {
+export default function Servers (props) {
     const {session, servers} = props
 
     if(!session){
@@ -12,7 +14,9 @@ export default function Channels (props) {
     return (
         <div>
             <h2>Servers</h2>
-            {servers.map(server => {return <ServerCard {...server} key={server.id}/>})}
+            <Stack spacing={2}>
+                {servers.map(server => {return <ServerCard {...server} key={server.id}/>})}
+            </Stack>
         </div>
     )
 }
