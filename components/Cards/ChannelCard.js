@@ -8,8 +8,6 @@ export default function ChannelCard(props){
   const { name, server, id } = props
   const router = useRouter()
 
-  console.log(props)
-
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onClick={() => {router.push(`/channels/${id}/overview`)}}>

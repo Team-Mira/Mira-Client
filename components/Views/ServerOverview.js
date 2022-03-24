@@ -10,13 +10,13 @@ const data = [
   {name: 'Active Users', amount: '27'}
 ]
 
-const charts = [1, 2]
+const charts = [{name: 'Messages Per Channel'}, {name: 'Activity Per Channel'}]
 
 export default function ServerOverview(){
   return(
     <Grid container spacing={2}>
       {data.map((e, i) => <Grid item xs={6} md={4} lg={3} key={'sm' + i}><SSCS data={e} /></Grid>)}
-      {charts.map((e, i) => <Grid item xs={12} lg={6} key={'md' + i}><SSCM /></Grid>)}
+      {charts.map((e, i) => <Grid item xs={12} lg={6} key={'md' + i}><SSCM data={e} /></Grid>)}
     </Grid>
   )
 }

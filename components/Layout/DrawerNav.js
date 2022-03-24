@@ -1,18 +1,39 @@
-import { AppBar, Box, Toolbar, Typography, Button, IconButton, Drawer, List, Divider, ListItem, Avatar, Container } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import ListItemText from '@mui/material/ListItemText';
-import { drawerProps } from '../MUIProperties/navbar'
+import { Toolbar, IconButton, List, Divider, ListItem, Avatar } from '@mui/material';
+import { openedMixin, closedMixin } from '../MUIProperties/navbar'
 import { useSession } from 'next-auth/react';
-import { useRouter } from "next/router";
+import { useState } from 'react';
+import { styled, useTheme } from '@mui/material/styles';
+import MuiDrawer from '@mui/material/Drawer'
+import DrawerItem from './DrawerItem'
 
+import Dns from '@mui/icons-material/Dns';
+import Wysiwyg from '@mui/icons-material/Wysiwyg';
+
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: 200,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
 
 export default function DrawerNav(){
+  const [open, setOpen] = useState(false);
   const { data: session } = useSession()
-  const router = useRouter()
 
   const tabs = [
-    {name: 'Servers', path: '/servers'},
-    {name: 'Channels', path: '/channels'}
+    {name: 'Servers', path: '/servers', icon: <Dns />},
+    {name: 'Channels', path: '/channels', icon: <Wysiwyg />}
   ]
 
   if(!session){
@@ -22,21 +43,16 @@ export default function DrawerNav(){
   const { user } = session
 
   return (
-      <Drawer {...drawerProps} hidden={session ? false : true}>
-
-        <Toolbar>
-          {/* <Typography sx={{ pr: 5 }}>{user.name}</Typography> */}
-          <IconButton sx={{ p: 0 }}>
-            <Avatar alt="discord_avatar" src={user.image} />
-          </IconButton>
-        </Toolbar>
+      <Drawer variant='permanent' hidden={session ? false : true} open={open}
+        onMouseOver={() => {setOpen(true)}} onMouseLeave={() => {setOpen(false)}}>
+          <Toolbar sx={{justifyContent: 'center'}}>
+            <IconButton>
+              <Avatar alt="discord_avatar" src={user.image} sx={{ p: 0 }} />
+            </IconButton>
+          </Toolbar>
         <Divider />
         <List>
-          {tabs.map((tab, index) => (
-            <ListItem button key={tab.path} onClick={() => router.push(tab.path)}>
-              <ListItemText primary={tab.name} />
-            </ListItem>
-          ))}
+          {tabs.map((tab) => (<DrawerItem item={tab} key={tab}/>))}
         </List>
       </Drawer>
   );
