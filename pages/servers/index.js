@@ -1,17 +1,16 @@
-import { getSession } from 'next-auth/react'
 import Stack from '@mui/material/Stack'
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import NavigateBefore from "@mui/icons-material/NavigateBefore"
-import fetchGuilds from '../../externalAPI/fetchGuilds'
 import ServerCard from '../../components/Cards/ServerCard'
 import { useRouter } from "next/router";
+import { useSession } from 'next-auth/react'
 
 import { dark } from '../../styles/theme/M3colors'
 
 export default function Servers (props) {
-    const {session, servers} = props
+    const { data: session } = useSession()
     const router = useRouter()
 
     if(!session){
@@ -33,31 +32,28 @@ export default function Servers (props) {
                 <Grid item xs={1} />
             </Grid>
             <Stack spacing={2}>
-                {servers.map(server => {return <ServerCard {...server} key={server.id}/>})}
+                {session.user.servers.map(server => {return <ServerCard {...server} key={server.id}/>})}
             </Stack>
         </>
     )
 }
 
-export async function getServerSideProps(context) {
-    const session = await getSession(context)
+// export async function getServerSideProps(context) {
+//     const session = await getSession(context)
 
-    if(session){
-        const id = session.user.id
-        const servers = await fetchGuilds(id)
-        return {
-            props: {
-            session,
-            servers
-            },
-        }
-    } else {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-}
+//     if(session){
+//         return {
+//             props: {
+//             session,
+//             },
+//         }
+//     } else {
+//         return {
+//             redirect: {
+//                 destination: '/',
+//                 permanent: false,
+//             },
+//         }
+//     }
+// }
 

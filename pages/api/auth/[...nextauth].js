@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import NextAuth from "next-auth/next";
 import DiscordProvider from "next-auth/providers/discord"
+import fetchGuilds from "../../../externalAPI/fetchGuilds"
 
 config()
 
@@ -18,7 +19,10 @@ export default NextAuth({
       const partial = session.user.image.slice(pointer)
       const id = partial.slice(0, partial.indexOf('/'))
 
+      const servers = await fetchGuilds(id)
+
       session.user.id = id
+      session.user.servers = servers
 
       return session
     },

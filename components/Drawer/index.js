@@ -5,9 +5,11 @@ import Toolbar from "@mui/material/Toolbar"
 import IconButton from "@mui/material/IconButton"
 import Avatar from "@mui/material/Avatar"
 import { useState } from "react"
+import { useSession } from 'next-auth/react'
 
 export default function NavDrawer(){
   const [open, setOpen] = useState(false)
+  const { data: session } = useSession()
 
   const handleOpen = () => {
     setOpen(!open)
@@ -19,7 +21,9 @@ export default function NavDrawer(){
       open={open}
       onMouseEnter={handleOpen}
       onMouseLeave={handleOpen}
-      hideBackdrop={true}>
+      hideBackdrop={true}
+      hidden={!session ? true : false}
+      >
       <Toolbar sx={{justifyContent: 'center'}}>
         <IconButton>
           <Avatar alt="discord_avatar" sx={{ p: 0 }} />
