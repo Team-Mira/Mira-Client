@@ -9,6 +9,8 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from '@mui/material/CardHeader';
 import Typography from "@mui/material/Typography";
 
+import { dark } from '../../styles/theme/M3colors'
+
 export default function SSCS(props){
   const { name, amount } = props.data
 
@@ -28,7 +30,7 @@ export default function SSCS(props){
   }
 
   return (
-    <Card>
+    <Card sx={{backgroundColor: dark.surface, boxShadow: 0}}>
       <CardHeader title={name} avatar={cardIcon(name)}/>
       <CardContent>
         <Typography variant="h4">{amount}</Typography>

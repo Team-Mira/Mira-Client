@@ -1,13 +1,15 @@
 import Box from "@mui/material/Box"
-import DrawerNav from "./DrawerNav"
+import NavDrawer from "../drawer"
 
-export default function Layout({children}) {
-    return (
-        <Box sx={{ display: 'flex' }}>
-            <DrawerNav />
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                {children}
-            </Box>
-        </Box>
-    )
+export default function Layout(props){
+  const { children } = props
+
+  return(
+    <Box sx={{ display: 'flex' }}>
+      <NavDrawer />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {children}
+      </Box>
+    </Box>
+  )
 }

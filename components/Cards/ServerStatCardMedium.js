@@ -4,6 +4,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Doughnut from "../Charts/Doughnut"
 import Line from "../Charts/Line"
 
+import { dark } from '../../styles/theme/M3colors'
+
 export default function SSCM(props){
 
   const { name } = props.data
@@ -20,7 +22,7 @@ export default function SSCM(props){
   }
 
   return (
-    <Card>
+    <Card sx={{backgroundColor: dark.surface, boxShadow: 0}}>
       <CardHeader title={name} />
       <CardContent>
         {cardChart(name)}
