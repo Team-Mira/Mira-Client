@@ -1,0 +1,49 @@
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+import NavigateBefore from "@mui/icons-material/NavigateBefore"
+import ServerOverview from "../../../components/Views/ServerOverview"
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react"
+
+import { dark } from '../../../styles/theme/M3colors'
+
+export default function ServersOverview(){
+  const { data: session, status } = useSession()
+
+  const router = useRouter()
+
+  if(!session){
+    return(
+      <Typography>Loading</Typography>
+    )
+  }
+
+
+
+  const server = session.user.servers.find(server => server.id === router.query.serverId)
+
+  if(!server){
+    return(
+      <Typography>Unable to view page</Typography>
+    )
+  }
+
+  return(
+    <>
+      <Grid container spacing={0} sx={{mb: 1}}>
+        <Grid item xs={1}>
+          <IconButton size="large" onClick={() => router.push('/servers')}
+            sx={{color: dark.onSurface}}>
+            <NavigateBefore fontSize="inherit" />
+          </IconButton>
+        </Grid>
+        <Grid item xs={10} >
+          <Typography align="center" variant="h3" sx={{color: dark.onSurface}}>{server.name}</Typography>
+        </Grid>
+        <Grid item xs={1} />
+      </Grid>
+      <ServerOverview />
+    </>
+  )
+}

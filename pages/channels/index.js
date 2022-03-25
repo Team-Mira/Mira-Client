@@ -1,25 +1,22 @@
 import { getSession } from 'next-auth/react'
+import { Stack } from '@mui/material'
 import fetchGuilds from '../../externalAPI/fetchGuilds'
 import ChannelCard from '../../components/Cards/ChannelCard'
+import grabChannels from '../../utility/grabChannels'
 
 export default function Channels ({ session, servers }) {
-    let channels = []
-
     if(!session){
         return <></>
     }
 
-    servers.map(
-        server => server.channels.map(
-            channel => {
-                channel.server = server.name
-                 channels.push(channel)
-            }))
+    const channels = grabChannels(servers)
 
     return (
         <div>
             <h2>Channels</h2>
-            {channels.map(channel => {return <ChannelCard {...channel} key={channel.id}/>})}
+            <Stack spacing={2}>
+                {channels.map(channel => {return <ChannelCard {...channel} key={channel.id}/>})}
+            </Stack>
         </div>
     )
 }

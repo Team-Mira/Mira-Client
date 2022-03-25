@@ -1,11 +1,12 @@
 import { CacheProvider } from "@emotion/react"
-import { ThemeProvider, CssBaseline } from '@mui/material'
-import Layout from "../components/Layout"
+import { ThemeProvider } from '@mui/material/'
+import CssBaseline from '@mui/material/CssBaseline'
 import { SessionProvider } from 'next-auth/react'
+import Layout from "../components/Layout"
 import Head from 'next/head'
-
 import createEmotionCache from '../utility/createEmotionCache'
-import darkTheme from '../styles/theme/darkTheme'
+
+import customTheme from '../styles/theme/customTheme'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -16,10 +17,10 @@ function MyApp(props) {
   return (
     <SessionProvider>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={customTheme}>
           <CssBaseline />
           <Head>
-            <title>My page title</title>
+            <title>Mira</title>
             <meta name="viewport" content="initial-scale=1, width=device-width" />
           </Head>
           <Layout>
