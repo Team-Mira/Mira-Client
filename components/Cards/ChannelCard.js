@@ -15,9 +15,9 @@ export default function ChannelCard(props){
   const router = useRouter()
 
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: dark.surface, boxShadow: 0 }}>
+    <Card sx={{ maxWidth: 345, backgroundColor: dark.surface, boxShadow: 0, borderRadius: 3}}>
       <CardActionArea onClick={() => {router.push(`/channels/${id}/overview`)}}
-        sx={{display: 'flex' }}>
+        sx={{display: 'flex', px: 2 }}>
         <CardMedia sx={{flexGrow: 1}}>
           <Container>
             <Face />
