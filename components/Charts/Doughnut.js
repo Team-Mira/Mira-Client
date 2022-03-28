@@ -2,15 +2,17 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Box } from "@mui/system";
 
-export default function DoughnutChart(){
+export default function DoughnutChart(props){
   ChartJS.register(ArcElement, Tooltip, Legend);
 
+  const { data } = props
+
   const testData = {
-    labels: ['Channel1', 'Channel2', 'Channel3', 'Channel4'],
+    labels: data.map(channel => {return channel.channelName}),
     datasets: [
       {
         label: '# of Votes',
-        data: [27, 21, 32, 20],
+        data: data.map(channel => {return channel.totalMessages}),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
