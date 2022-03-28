@@ -8,12 +8,13 @@ import { dark } from '../../styles/theme/M3colors'
 
 export default function SSCM(props){
 
-  const { name } = props.data
+  const { name } = props.chartType
+  const { data } = props
 
   function cardChart(name){
     switch(name){
       case 'Messages Per Channel':
-        return <Doughnut />
+        return <Doughnut data={data} />
       case 'Activity Per Channel':
         return <Line />
       default:

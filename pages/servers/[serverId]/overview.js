@@ -8,8 +8,9 @@ import { useSession } from "next-auth/react"
 
 import { dark } from '../../../styles/theme/M3colors'
 
-export default function ServersOverview(){
+export default function ServersOverview(props){
   const { data: session, status } = useSession()
+  const { data } = props
 
   const router = useRouter()
 
@@ -43,7 +44,32 @@ export default function ServersOverview(){
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      <ServerOverview />
+      <ServerOverview data={data} />
     </>
   )
+}
+
+export async function getStaticPaths() {
+
+  const res = await fetch('http://localhost:8080/api/guilds/')
+  const ids = await res.json()
+
+  return {
+    paths: ids.map((serverId) => ({
+      params: { serverId },
+    })),
+    fallback: true
+  };
+}
+
+export async function getStaticProps(context) {
+
+  const { serverId } = context.params
+
+  const res = await fetch(`http://localhost:8080/api/data/${serverId}`)
+  const data = await res.json()
+
+  return {
+    props: { data },
+  }
 }

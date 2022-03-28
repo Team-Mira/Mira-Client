@@ -17,6 +17,8 @@ export default function Servers (props) {
         return <></>
     }
 
+    console.log(session.user.servers)
+
     return (
         <>
             <Grid container spacing={0} sx={{mb: 1}}>
