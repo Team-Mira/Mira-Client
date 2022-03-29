@@ -3,7 +3,6 @@ import { Stack } from '@mui/material'
 import fetchGuilds from '../../externalAPI/fetchGuilds'
 import ChannelCard from '../../components/Cards/ChannelCard'
 import grabChannels from '../../utility/grabChannels'
-import ForceGraph from '../../components/Charts/ForceGraph'
 
 export default function Channels ({ session, servers }) {
     if(!session){
