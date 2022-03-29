@@ -3,8 +3,8 @@ import {useState} from 'react'
 import Tooltip from '@mui/material'
 import {Box} from '@mui/system'
 
-function NetworkGraph({guildReport}) {
-  let {updateUserGraph} = guildReport
+function NetworkGraph({data}) {
+  let {updateUserGraph} = data
 
   const[tipFocus, setTipFocus] = useState('')
 
@@ -13,12 +13,16 @@ function NetworkGraph({guildReport}) {
     zoomView: false,
     nodes: {
       shape: "dot",
-
+      color: 'rgba(54, 162, 235, 1)'
     },
     edges: {
-      color: "rgb(255, 99, 132)",
+      color: "rgba(255, 99, 132, .5",
       physics: true,
-      width: 1,
+      arrowStrikethrough: true,
+      endPointOffset:{
+        from: 5,
+        to: 5
+      },
       arrows: {
         to:{
           enabled: false
