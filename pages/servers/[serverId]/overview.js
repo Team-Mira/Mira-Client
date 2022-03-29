@@ -10,7 +10,7 @@ import { dark } from '../../../styles/theme/M3colors'
 
 export default function ServersOverview(props){
   const { data: session, status } = useSession()
-  const { guildReport } = props
+  const { data } = props
 
   const router = useRouter()
 
@@ -44,7 +44,7 @@ export default function ServersOverview(props){
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      <ServerOverview guildReport={guildReport} />
+      <ServerOverview data={data} />
     </>
   )
 }
@@ -67,9 +67,8 @@ export async function getStaticProps(context) {
   const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
 
   const data = await res.json()
-  const {guildReport} = await res.json()
 
   return {
-    props: {data, guildReport},
+    props: {data},
   }
 }

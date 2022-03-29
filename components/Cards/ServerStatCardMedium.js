@@ -10,7 +10,7 @@ import { dark } from '../../styles/theme/M3colors'
 export default function SSCM(props){
 
   const { name } = props.chartType
-  const { guildReport } = props
+  const {data} = props
 
   function cardChart(name){
     switch(name){
@@ -19,7 +19,7 @@ export default function SSCM(props){
       case 'Activity Per Channel':
         return <Line data={data} />
       case 'User Map':
-        return <NetworkGraph guildReport={guildReport} />
+        return <NetworkGraph data={data} />
       default:
         return <></>
     }
