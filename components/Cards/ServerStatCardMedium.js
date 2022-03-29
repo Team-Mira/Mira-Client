@@ -3,13 +3,14 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from '@mui/material/CardHeader';
 import Doughnut from "../Charts/Doughnut"
 import Line from "../Charts/Line"
+import NetworkGraph from '../Charts/NetworkGraph'
 
 import { dark } from '../../styles/theme/M3colors'
 
 export default function SSCM(props){
 
   const { name } = props.chartType
-  const { data } = props
+  const { guildReport } = props
 
   function cardChart(name){
     switch(name){
@@ -17,6 +18,8 @@ export default function SSCM(props){
         return <Doughnut data={data} />
       case 'Activity Per Channel':
         return <Line data={data} />
+      case 'User Map':
+        return <NetworkGraph guildReport={guildReport} />
       default:
         return <></>
     }
