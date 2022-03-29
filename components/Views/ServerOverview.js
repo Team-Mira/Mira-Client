@@ -10,13 +10,13 @@ const fakeData = [
   {name: 'Active Users', amount: '27'}
 ]
 
-const charts = [{name: 'Messages Per Channel'}, {name: 'Activity Per Channel'}]
+const charts = [{name: 'Messages Per Channel'}, {name: 'Activity Per Channel'}, {name: 'User Map'}]
 
-export default function ServerOverview({ data }){
+export default function ServerOverview({ guildReport }){
   return(
     <Grid container spacing={2}>
       {fakeData.map((e, i) => <Grid item xs={6} md={4} lg={3} key={'sm' + i}><SSCS data={e} /></Grid>)}
-      {charts.map((e, i) => <Grid item xs={12} lg={6} key={'md' + i}><SSCM chartType={e} data={data} /></Grid>)}
+      {charts.map((e, i) => <Grid item xs={12} lg={6} key={'md' + i}><SSCM chartType={e} guildReport={guildReport} /></Grid>)}
     </Grid>
   )
 }
