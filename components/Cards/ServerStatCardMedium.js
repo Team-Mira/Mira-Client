@@ -16,7 +16,7 @@ export default function SSCM(props){
       case 'Messages Per Channel':
         return <Doughnut data={data} />
       case 'Activity Per Channel':
-        return <Line />
+        return <Line data={data} />
       default:
         return <></>
     }
