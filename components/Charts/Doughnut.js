@@ -5,14 +5,14 @@ import { Box } from "@mui/system";
 export default function DoughnutChart(props){
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const { data } = props
+  const { channels } = props.data
 
   const testData = {
-    labels: data.map(channel => {return channel.channelName}),
+    labels: channels.map(channel => {return channel.name}),
     datasets: [
       {
-        label: '# of Votes',
-        data: data.map(channel => {return channel.totalMessages}),
+        label: '# of Messages',
+        data: channels.map(channel => {return channel.totalMessages}),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',

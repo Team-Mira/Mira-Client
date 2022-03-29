@@ -1,16 +1,102 @@
+:root {
+  font-family: 'Comfortaa', cursive;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+
+  --clr-primary: hsl(258, 100%, 87%);
+  --clr-onPrimary: hsl(259, 58%, 28%);
+  --clr-primaryContainer: hsl(257, 43%, 38%);
+  --clr-onPrimaryContainer: hsl(263, 100%, 93%);
+  --clr-secondary: 	hsl(263, 27%, 81%);
+  --clr-onSecondary: 	hsl(258, 18%, 22%);
+  --clr-secondaryContainer: hsl(258, 13%, 31%);
+  --clr-onSecondaryContainer: hsl(263, 65%, 92%);
+  --clr-tertiary: hsl(343, 63%, 83%);
+  --clr-onTertiary: hsl(338, 33%, 22%);
+  --clr-tertiaryContainer: hsl(341, 25%, 31%);
+  --clr-onTertiaryContainer: hsl(342, 100%, 92%);
+  --clr-error: hsl(3, 70%, 83%);
+  --clr-onError: hsl(3, 71%, 22%);
+  --clr-errorContainer: hsl(3, 71%, 32%);
+  --clr-onErrorContainer: hsl(4, 71%, 92%);
+  --clr-background: hsl(255, 7%, 11%);
+  --clr-onBackground: hsl(312, 9%, 89%);
+  --clr-surface: hsl(255, 7%, 11%);
+  --clr-onSurface: 	hsl(312, 9%, 89%);
+  --clr-outline: hsl(264, 5%, 58%);
+  --clr-surfaceVariant: hsl(264, 7%, 29%);
+  --clr-onSurfaceVariant: hsl(270, 11%, 79%);
+  --state-hover: 8%;
+  --state-focus: 12%;
+  --state-pressed: 12%;
+  --state-dragged: 16%;
+
+  --fnt-display-lg-line-height: 4rem;
+  --fnt-display-lg-size: 3.5625rem;
+  --fnt-display-lg-tracking: 0rem;
+
+  --fnt-display-md-line-height: 3.25rem;
+  --fnt-display-md-size: 2.8125rem;
+  --fnt-display-md-tracking: 0rem;
+
+  --fnt-display-sm-line-height: 2.75rem;
+  --fnt-display-sm-size: 2.25rem;
+  --fnt-display-sm-tracking: 0rem;
+
+  --fnt-headline-lg-line-height: 2.5rem;
+  --fnt-headline-lg-size: 2rem;
+  --fnt-headline-lg-tracking: 0rem;
+
+  --fnt-headline-md-line-height: 2.25rem;
+  --fnt-headline-md-size: 1.75rem;
+  --fnt-headline-md-tracking: 0rem;
+
+  --fnt-headline-sm-line-height: 2rem;
+  --fnt-headline-sm-size: 1.5rem;
+  --fnt-headline-sm-tracking: 0rem;
+
+  --fnt-title-lg-line-height: 1.75rem;
+  --fnt-title-lg-size: 1.375rem;
+  --fnt-title-lg-tracking: 0rem;
+
+  --fnt-title-md-line-height: 1.5rem;
+  --fnt-title-md-size: 1rem;
+  --fnt-title-md-tracking: 0.009375rem;
+
+  --fnt-title-sm-line-height: 1.25rem;
+  --fnt-title-sm-size: 0.875rem;
+  --fnt-title-sm-tracking: 0.00625rem;
+
+  --fnt-label-lg-line-height: 1.25rem;
+  --fnt-label-lg-size: 0.0875rem;
+  --fnt-label-lg-tracking: 0.00625rem;
+
+  --fnt-label-md-line-height: 1rem;
+  --fnt-label-md-size: 0.75rem;
+  --fnt-label-md-tracking: 0.03125rem;
+
+  --fnt-label-sm-line-height: 0.375rem;
+  --fnt-label-sm-size: 0.6875rem;
+  --fnt-label-sm-tracking: 0.03125rem;
+
+  --fnt-body-lg-line-height: 1.5rem;
+  --fnt-body-lg-size: 1rem;
+  --fnt-body-lg-tracking: 0.009375rem;
+
+  --fnt-body-md-line-height: 1.25rem;
+  --fnt-body-md-size: 0.875rem;
+  --fnt-body-md-tracking: 0.015625rem;
+
+  --fnt-body-sm-line-height: 1rem;
+  --fnt-body-sm-size: 0.75rem;
+  --fnt-body-sm-tracking: 0.025rem;
+
+  background-color: var(--clr-background);
+  color: var(--clr-onBackground);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }

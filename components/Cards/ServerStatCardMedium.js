@@ -15,9 +15,9 @@ export default function SSCM(props){
   function cardChart(name){
     switch(name){
       case 'Messages Per Channel':
-        return <NetworkGraph guildReport={guildReport} />
+        return <Doughnut data={data} />
       case 'Activity Per Channel':
-        return <Line />
+        return <Line data={data} />
       case 'User Map':
         return <NetworkGraph guildReport={guildReport} />
       default:

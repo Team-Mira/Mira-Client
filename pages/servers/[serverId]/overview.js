@@ -65,8 +65,11 @@ export async function getStaticProps(context) {
   const { serverId } = context.params
 
   const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
+
+  const data = await res.json()
   const {guildReport} = await res.json()
+
   return {
-    props: {guildReport},
+    props: {data, guildReport},
   }
 }
