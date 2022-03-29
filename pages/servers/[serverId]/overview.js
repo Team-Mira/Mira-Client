@@ -66,7 +66,7 @@ export async function getStaticProps(context) {
 
   const { serverId } = context.params
 
-  const res = await fetch(`http://localhost:8080/api/data/${serverId}`)
+  const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
   const data = await res.json()
 
   return {
