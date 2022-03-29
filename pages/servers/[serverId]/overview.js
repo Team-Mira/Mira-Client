@@ -10,7 +10,7 @@ import { dark } from '../../../styles/theme/M3colors'
 
 export default function ServersOverview(props){
   const { data: session, status } = useSession()
-  const { data } = props
+  const { guildReport } = props
 
   const router = useRouter()
 
@@ -44,20 +44,18 @@ export default function ServersOverview(props){
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      <ServerOverview data={data} />
+      <ServerOverview guildReport={guildReport} />
     </>
   )
 }
 
 export async function getStaticPaths() {
 
-  const res = await fetch('http://localhost:8080/api/guilds/')
-  const ids = await res.json()
+  // const res = await fetch('http://localhost:8080/api/guilds/')
+  // const ids = await res.json()
 
   return {
-    paths: ids.map((serverId) => ({
-      params: { serverId },
-    })),
+    paths: [{params: {serverId: "953680127726866442"}}],
     fallback: true
   };
 }
@@ -66,10 +64,9 @@ export async function getStaticProps(context) {
 
   const { serverId } = context.params
 
-  const res = await fetch(`http://localhost:8080/api/data/${serverId}`)
-  const data = await res.json()
-
+  const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
+  const {guildReport} = await res.json()
   return {
-    props: { data },
+    props: {guildReport},
   }
 }

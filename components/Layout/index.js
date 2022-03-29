@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box"
-import NavDrawer from "../drawer"
+import NavDrawer from "../Drawer"
 
 export default function Layout(props){
   const { children } = props
