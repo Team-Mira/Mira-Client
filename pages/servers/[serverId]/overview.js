@@ -52,10 +52,11 @@ export default function ServersOverview(props){
 export async function getStaticPaths() {
 
   // const res = await fetch('http://localhost:8080/api/guilds/')
-  // const ids = await res.json()
+  const res = await fetch('https://mira-api-cs.herokuapp.com/api/guilds/')
+  const ids = await res.json()
 
   return {
-    paths: [{params: {serverId: "953680127726866442"}}],
+    paths:ids.map(serverId => ({params: {serverId}})),
     fallback: true
   };
 }
@@ -64,7 +65,8 @@ export async function getStaticProps(context) {
 
   const { serverId } = context.params
 
-  const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
+  // const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
+  const res = await fetch(`https://mira-api-cs.herokuapp.com/api/report/${serverId}`)
 
   const data = await res.json()
 
