@@ -40,13 +40,13 @@ export async function getStaticProps(context) {
   if( res.status !== 200 ){
     return {
       notFound: true,
-      revalidate: 60
+      revalidate: 600
     }
   } else {
     const user = await res.json()
     return {
       props: {user, failed: false},
-      revalidate: 60
+      revalidate: 600
     }
   }
 }
