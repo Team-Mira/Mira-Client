@@ -10,11 +10,15 @@ import { useSession } from 'next-auth/react'
 import { dark } from '../../styles/theme/M3colors'
 
 export default function Servers (props) {
-    const { data: session } = useSession()
+    const { data: session, status} = useSession()
     const router = useRouter()
 
     if(!session){
-        return <></>
+        return <h3>Please log in</h3>
+    }
+
+    if(status === 'loading'){
+        return <h3>Loading</h3>
     }
 
     console.log(session.user.servers)
@@ -34,7 +38,7 @@ export default function Servers (props) {
                 <Grid item xs={1} />
             </Grid>
             <Stack spacing={2}>
-                {session.user.servers.map(server => {return <ServerCard {...server} key={server.id}/>})}
+                {session.user.servers ? session.user.servers.map(server => {return <ServerCard {...server} key={server.id}/>}) : <h3>No Servers</h3>}
             </Stack>
         </>
     )
