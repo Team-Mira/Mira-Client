@@ -27,22 +27,17 @@ const labels = ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', 
 
 export default function LineChart({ data }) {
 
+  const { channels } = data
+
   const chartData = {
     labels,
-    datasets: [
-      {
-        label: data.channels[0].name,
-        data: data.channels[0].activity,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: data.channels[1].name,
-        data: data.channels[1].activity,
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
+    datasets: channels.map(channel => ({
+      label: channel.name,
+      data: channel.activity,
+      borderColor: channel.colors.border,
+      backgroundColor: channel.colors.main,
+      borderWidth: 2
+    }))
   };
 
   return (

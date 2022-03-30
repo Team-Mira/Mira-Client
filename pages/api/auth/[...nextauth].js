@@ -1,9 +1,6 @@
-import { config } from "dotenv";
 import NextAuth from "next-auth/next";
 import DiscordProvider from "next-auth/providers/discord"
 import fetchGuilds from "../../../externalAPI/fetchGuilds"
-
-config()
 
 export default NextAuth({
   providers: [
