@@ -4,6 +4,7 @@ import CardHeader from '@mui/material/CardHeader';
 import DoughnutChart from "../Charts/DoughnutChart"
 import LineChart from "../Charts/LineChart"
 import NetworkGraph from '../Charts/NetworkGraph'
+import Heatmap from '../Charts/Heatmap'
 
 import { dark } from '../../styles/theme/M3colors'
 
@@ -20,6 +21,8 @@ export default function SSCM(props){
         return <LineChart data={data} />
       case 'User Map':
         return <NetworkGraph data={data} />
+      case 'HeatMap':
+        return <Heatmap data = {data} />
       default:
         return <></>
     }
