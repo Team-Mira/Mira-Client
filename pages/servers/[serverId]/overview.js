@@ -5,8 +5,9 @@ import NavigateBefore from "@mui/icons-material/NavigateBefore"
 import ServerOverview from "../../../components/Views/ServerOverview"
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react"
-
 import { dark } from '../../../styles/theme/M3colors'
+
+const ADDRESS = process.env.API_URL || 'http://localhost:8080/api/'
 
 export default function ServersOverview(props){
   const { data: session, status } = useSession()
@@ -50,9 +51,7 @@ export default function ServersOverview(props){
 }
 
 export async function getStaticPaths() {
-
-  // const res = await fetch('http://localhost:8080/api/guilds/')
-  const res = await fetch('https://mira-api-cs.herokuapp.com/api/guilds/')
+  const res = await fetch( `${ADDRESS}guilds/`)
   const ids = await res.json()
 
   return {
@@ -62,12 +61,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-
   const { serverId } = context.params
 
-  // const res = await fetch(`http://localhost:8080/api/report/${serverId}`)
-  const res = await fetch(`https://mira-api-cs.herokuapp.com/api/report/${serverId}`)
-
+  const res = await fetch(`${ADDRESS}report/${serverId}`)
   const data = await res.json()
 
   return {

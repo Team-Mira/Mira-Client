@@ -7,25 +7,15 @@ export default function DoughnutChart(props){
 
   const { channels } = props.data
 
-  const testData = {
+  const dataObj = {
     labels: channels.map(channel => {return channel.name}),
     datasets: [
       {
         label: '# of Messages',
         data: channels.map(channel => {return channel.totalMessages}),
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-        ],
-        borderWidth: 1,
+        backgroundColor: channels.map(channel => (channel.colors.main)),
+        borderColor: channels.map(channel => (channel.colors.border)),
+        borderWidth: 2,
       },
     ],
   };
@@ -42,7 +32,7 @@ export default function DoughnutChart(props){
 
   return(
     <Box sx={{height: 300, position: 'relative'}}>
-      <Doughnut data={testData} options={options} />
+      <Doughnut data={dataObj} options={options} />
     </Box>
   )
 }

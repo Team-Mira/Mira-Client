@@ -1,5 +1,6 @@
 import LoginButton from "../components/Buttons/LoginButton";
-import SignoutButton from "../components/Buttons/SignoutButton"
+import SignoutButton from "../components/Buttons/SignoutButton";
+import AddBotButton from "../components/Buttons/AddBotButton"
 
 import { useSession } from 'next-auth/react'
 
@@ -12,6 +13,7 @@ export default function Home() {
       <div>
         <h1>Hello</h1>
         <LoginButton />
+        <AddBotButton />
       </div>
     );
   }
@@ -20,6 +22,7 @@ export default function Home() {
     <div>
       <h1>Logged in</h1>
       <SignoutButton />
+      <AddBotButton />
     </div>
   );
 }
