@@ -16,14 +16,15 @@
     "apexcharts": "^3.34.0",
     "axios": "^0.26.1",
     "chart.js": "^3.7.1",
-    "dotenv": "^16.0.0",
     "next-auth": "^4.3.1",
+    "randomcolor": "^0.6.2",
     "react": "17.0.2",
     "react-apexcharts": "^1.4.0",
     "react-chartjs-2": "^4.0.1",
     "react-dom": "17.0.2",
     "react-graph-vis": "^1.0.7",
-    "react-query": "^3.34.17"
+    "react-query": "^3.34.17",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "eslint": "8.11.0",
