@@ -27,13 +27,13 @@ export default function ServerCard(props){
       <CardActionArea onClick={() => {router.push(`/servers/${id}/overview`)}}
         sx={{display: 'flex', px: 2 }}>
         <Grid container>
-          <Grid item alignContent='center'>
+          {/* <Grid item alignContent='center'>
             <CardMedia sx={{flexGrow: 1}}>
               <Container>
                 <Face />
               </Container>
             </CardMedia>
-          </Grid>
+          </Grid> */}
           <Grid item>
             <CardContent sx={{flexGrow: 3}}>
               <Typography gutterBottom variant="h5" component="div">
