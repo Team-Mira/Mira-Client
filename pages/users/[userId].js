@@ -39,12 +39,14 @@ export async function getStaticProps(context) {
   const res = await fetch(`${ADDRESS}report/user/${userId}`)
   if( res.status !== 200 ){
     return {
-      notFound: true
+      notFound: true,
+      revalidate: 600
     }
   } else {
     const user = await res.json()
     return {
       props: {user, failed: false},
+      revalidate: 600
     }
   }
 }

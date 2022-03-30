@@ -66,7 +66,15 @@ export async function getStaticProps(context) {
   const res = await fetch(`${ADDRESS}report/${serverId}`)
   const data = await res.json()
 
+  if(!data){
+    return {
+      notFound: true,
+      revalidate: 60
+    }
+  }
+
   return {
     props: {data},
+    revalidate: 60
   }
 }
