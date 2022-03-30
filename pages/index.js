@@ -3,7 +3,6 @@ import SignoutButton from "../components/Buttons/SignoutButton";
 import AddBotButton from "../components/Buttons/AddBotButton"
 import LoginCard from "../components/Cards/LoginCard";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 
 import { useSession } from 'next-auth/react'
 
