@@ -6,14 +6,19 @@ function NetworkGraph({data}) {
 
   const options = {
     height: "100%",
-    zoomView: false,
+    interaction: {
+      zoomView: true,
+    },
     nodes: {
       shape: "circularImage",
       borderWidth: 0
     },
+    font: {
+      color: '#ffffff'
+    },
     edges: {
       color: "rgba(255, 99, 132, .5",
-      physics: true,
+      physics: false,
       arrowStrikethrough: true,
       endPointOffset:{
         from: 5,
