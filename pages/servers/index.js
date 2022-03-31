@@ -21,7 +21,11 @@ export default function Servers (props) {
         return <h3>Loading</h3>
     }
 
-    console.log(session.user.servers)
+    if(!session.user.servers){
+        return(
+            <h4>No servers found</h4>
+        )
+    }
 
     return (
         <>

@@ -21,8 +21,6 @@ export default function ServersOverview(props){
     )
   }
 
-
-
   const server = session.user.servers.find(server => server.id === router.query.serverId)
 
   if(!server){
@@ -51,7 +49,7 @@ export default function ServersOverview(props){
 }
 
 export async function getStaticPaths() {
-  const res = await fetch( `${ADDRESS}guilds/`)
+  const res = await fetch( ADDRESS + 'guilds/ids')
   const ids = await res.json()
 
   return {
@@ -63,18 +61,29 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { serverId } = context.params
 
-  const res = await fetch(`${ADDRESS}report/${serverId}`)
-  const data = await res.json()
+  try{
+    const res = await fetch(`${ADDRESS}report/${serverId}`)
 
-  if(!data){
+    if(res.status !== 200){
+      return{
+        redirect: {
+        destination: '/error',
+        permanent: false,
+      }}
+    }
+
+    const data = await res.json()
+
     return {
-      notFound: true,
+      props: {data},
       revalidate: 60
     }
-  }
 
-  return {
-    props: {data},
-    revalidate: 60
+  } catch(err){
+    return{
+      redirect: {
+      destination: '/error',
+      permanent: false,
+    }}
   }
 }
