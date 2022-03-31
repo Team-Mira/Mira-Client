@@ -24,7 +24,7 @@ export default function User (props) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch( `${ADDRESS}users/`)
+  const res = await fetch( `${ADDRESS}users/ids`)
   const ids = await res.json()
 
   return {
