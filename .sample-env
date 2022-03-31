@@ -1,0 +1,7 @@
+Put the following in '.env.local'
+
+DISCORD_CLIENT_ID = **Enter Discord Client Token Here**
+DISCORD_CLIENT_SECRET = **Enter Discord Secret Token Here**
+NEXTAUTH_URL = http://localhost:3000/
+NEXTAUTH_SECRET = **Create this token by running 'openssl rand -base64 32' in the console**
+API_URL = **Enter API URL**
