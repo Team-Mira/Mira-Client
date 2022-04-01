@@ -11,14 +11,12 @@ export default NextAuth({
     })
   ],
   callbacks: {
-    session: async ({session}) => {
-      const pointer = (session.user.image.indexOf('avatars')) + 8
-      const partial = session.user.image.slice(pointer)
-      const id = partial.slice(0, partial.indexOf('/'))
+    // session: async ({session}) => {
+    session: async (obj) => {
+      const { session } = obj
+      const servers = await fetchGuilds(obj.token.sub)
 
-      const servers = await fetchGuilds(id)
-
-      session.user.id = id
+      session.user.id = obj.token.sub
       session.user.servers = servers
 
       return session
