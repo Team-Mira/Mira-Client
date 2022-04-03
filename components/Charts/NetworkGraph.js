@@ -1,15 +1,20 @@
 import Graph from 'react-graph-vis'
 import {useState} from 'react'
 import {Box} from '@mui/system'
+import { styled } from '@mui/material/styles'
 
 function NetworkGraph({data}) {
   let {updateUserGraph} = data
 
+  let StyledGraph = styled(Graph)(({theme}) => ({
+
+  }))
 
 
   const options = {
     autoResize: true,
-    height: "100%",
+    height: "110%",
+    width: "110%",
     margin: 0,
     padding: 0,
     nodes: {
@@ -41,8 +46,8 @@ function NetworkGraph({data}) {
   
   }
   return (
-    <Box sx={{ height: 450, px: 0, py: 0, mx: 0, my:0}}>  
-      <Graph graph={updateUserGraph} options={options} />
+    <Box sx={{height: 450, position:'relative'}}>  
+      <StyledGraph graph={updateUserGraph} options={options} />
     </Box>
   );
 }
