@@ -2,9 +2,9 @@ import Grid from "@mui/material/Grid"
 
 import SSCS from "../Cards/ServerStatCardSmall"
 import SSCM from "../Cards/ServerStatCardMedium"
-import LeaderBoard from '../Charts/LeaderBoard'
+import SSCL from '../Cards/ServerStatCardList'
 
-const charts = [{name: 'Messages Per Channel'}, {name: 'Activity Per Channel'}, {name: 'User Map'}]
+const charts = [{name: 'Messages Per Channel'}, {name: 'Activity Per Channel'}]
 
 export default function ServerOverview({ data }){
   
@@ -22,9 +22,10 @@ export default function ServerOverview({ data }){
   ]
   return(
     <Grid container spacing={2}>
-      {cardData.map((e, i) => <Grid item xs={6} md={4} lg={3} key={'sm' + i}><SSCS data={e} /></Grid>)}
+      {cardData.map((e, i) => <Grid item xs={12} md={6} lg={3} key={'sm' + i}><SSCS data={e} /></Grid>)}
       {charts.map((e, i) => <Grid item xs={12} lg={6} key={'md' + i}><SSCM chartType={e} data={data}  /></Grid>)}
-      {leaderBoardData.map((e,i) => <Grid item xs={4} lg={6} key={'bd' + i}><LeaderBoard header={e} data={data} /></Grid>)}
+      <Grid item xs={12} lg={12}><SSCM chartType={{name: 'User Map'}} data={data}  /></Grid>
+      {leaderBoardData.map((e,i) => <Grid item xs={12} md={6} lg={4} key={'bd' + i}><SSCL header={e} data={data} /></Grid>)}
     </Grid>
   )
 }

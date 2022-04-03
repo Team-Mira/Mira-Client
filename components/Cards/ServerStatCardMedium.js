@@ -26,7 +26,7 @@ export default function SSCM(props){
   }
 
   return (
-    <Card sx={{backgroundColor: dark.surface, boxShadow: 0, borderRadius: 3, px: 2}}>
+    <Card sx={{backgroundColor: dark.surface, boxShadow: 0, borderRadius: 3, px: 0, py: 0, mx: 0, my:0}}>
       <CardHeader title={name} />
       <CardContent>
         {cardChart(name)}
