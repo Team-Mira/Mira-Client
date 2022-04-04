@@ -5,22 +5,24 @@ const ADDRESS = process.env.API_URL || 'http://localhost:8080/api/'
 
 export default function User (props) {
   const { data: session, status } = useSession()
-
-  if(!props.user){
-    return <h1>asfda</h1>
-  }
+  const router = useRouter()
 
   if(status === 'loading'){
     return <h4>Loading</h4>
   }
 
-  const { name, id } = props.user
+  const { name, id } = session.user
 
-  if(id !== session.user.id){
+  console.log(props.user)
+  if(router.query.userId!== id){
     return <h4>You can not access this page</h4>
   }
 
-  return (<h1>Hello, {name}!</h1>)
+  return (
+  
+  <h1>Hello, {name}!</h1>
+  
+  )
 }
 
 export async function getStaticPaths() {
