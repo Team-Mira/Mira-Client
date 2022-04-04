@@ -1,34 +1,59 @@
-import Chart from "react-apexcharts"
 import { Box } from "@mui/system";
+import dynamic from 'next/dynamic'
+
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false})
 
 export default function Heatmap({data}) {
   const options = {
       dataLabels: {
         enabled: false
       },
-      colors: ["#008FFB"],
+      colors: ['#E91E63'],
       title: {
         text: 'HeatMap'
-      }
+      },
+      xaxis: {
+        categories: ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am',
+      '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm']
+      },
+      chart: {
+        height: '100%',
+        width: '100%'
+      },
+      plotOptions: {
+        heatmap: {
+          distributed: true
+        }
+      },
+      grid: {
+        show: true,
+        borderColor: '#000000',
+        strokeDashArray: 0,
+        position: 'front',
+        xaxis: {
+          lines: {
+              show: true
+          }
+        },
+        yaxis: {
+          lines: {
+            show: true
+          }
+      },
+    },
+    tooltip: {
+      enabled: false
+    }
   }
 
-  const series = [
-    {
-      name: "Series 1",
-      data: [{
-        x: 'W1',
-        y: 22
-      }, {
-        x: 'W2',
-        y: 29
-      }, {
-        x: 'W3',
-        y: 13
-      }, {
-        x: 'W4',
-        y: 32
-      }]
-    }]
+
+  const {channels} = data
+
+  const series = channels.map(channel => ({
+    name: channel.name,
+    data: channel.activity
+  }))
+
 
   return (
     <Box sx={{height: 300, position: 'relative'}}>
@@ -36,8 +61,10 @@ export default function Heatmap({data}) {
         options={options}
         series={series}
         type="heatmap"
+        height={300}
         />
     </Box>
+
   )
 
 }

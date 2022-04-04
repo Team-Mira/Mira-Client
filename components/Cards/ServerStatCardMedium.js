@@ -9,7 +9,7 @@ import Heatmap from '../Charts/Heatmap'
 import { dark } from '../../styles/theme/M3colors'
 
 export default function SSCM(props){
-
+  // console.log('props', props)
   const { name } = props.chartType
   const {data} = props
 
@@ -21,7 +21,7 @@ export default function SSCM(props){
         return <LineChart data={data} />
       case 'User Map':
         return <NetworkGraph data={data} />
-      case 'HeatMap':
+      case 'Heat Map':
         return <Heatmap data = {data} />
       default:
         return <></>
