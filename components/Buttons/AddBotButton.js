@@ -9,7 +9,7 @@ export default function AddBotButton(){
   }
 
   return(
-    <Button variant="outlined" size="large" onClick={handleNav}>
+    <Button variant="contained" size="large" onClick={handleNav}>
       Add Bot
     </Button>
   )

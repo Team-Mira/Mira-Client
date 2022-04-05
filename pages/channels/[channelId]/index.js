@@ -50,8 +50,6 @@ export default function ServersOverview(props){
     setChoice(target.value)
   }
 
-  console.log(data)
-
   return(
     <>
       <Grid container spacing={0} sx={{mb: 1}}>

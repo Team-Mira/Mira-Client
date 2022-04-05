@@ -1,16 +1,17 @@
-import SignoutButton from "../components/Buttons/SignoutButton";
-import AddBotButton from "../components/Buttons/AddBotButton"
 import LoginCard from "../components/Cards/LoginCard";
 import Grid from "@mui/material/Grid";
+import LoadingCard from "../components/Cards/LoadingCard";
+import { useRouter } from "next/router";
 
 import { useSession } from 'next-auth/react'
 
 
 export default function Home() {
   const { data: session, status } = useSession()
+  const router = useRouter()
 
   if(status === 'loading'){
-    return <h4>Loading...</h4>
+    return <LoadingCard />
   }
 
   if(!session){
@@ -24,11 +25,8 @@ export default function Home() {
     );
   }
 
-  return (
-    <div>
-      <h1>Logged in</h1>
-      <SignoutButton />
-      <AddBotButton />
-    </div>
-  );
+  if(session){
+    router.push(`/users/${session.user.id}`)
+    return <LoadingCard />
+  }
 }

@@ -13,13 +13,21 @@ export default function Servers (props) {
     const { data: session, status} = useSession()
     const router = useRouter()
 
+    const handleBack = () => {
+        if(session){
+            router.push(`/users/${session.user.id}`)
+            return
+        }
+        router.push(`/`)
+    }
+
     if(!session){
         const server = {name: 'The Mira Discord', channelCount: 4, members: 7, id: 'demo'}
         return (
             <>
                 <Grid container spacing={0} sx={{mb: 1}}>
                     <Grid item xs={1}>
-                        <IconButton size="large" onClick={() => router.push('/')}
+                        <IconButton size="large" onClick={handleBack}
                             sx={{color: dark.onSurface}}>
                             <NavigateBefore fontSize="inherit" />
                         </IconButton>
@@ -46,13 +54,11 @@ export default function Servers (props) {
         )
     }
 
-    console.log(session.user.servers)
-
     return (
         <>
             <Grid container spacing={0} sx={{mb: 1}}>
                 <Grid item xs={1}>
-                    <IconButton size="large" onClick={() => router.push('/')}
+                    <IconButton size="large" onClick={handleBack}
                         sx={{color: dark.onSurface}}>
                         <NavigateBefore fontSize="inherit" />
                     </IconButton>

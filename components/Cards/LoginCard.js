@@ -3,7 +3,6 @@ import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import LoginButton from '../Buttons/LoginButton'
 import AddBotButton from '../Buttons/AddBotButton'
-import GuestButton from '../Buttons/GuestButton'
 import Box from '@mui/material/Box'
 
 export default function LoginCard(){
@@ -11,7 +10,7 @@ export default function LoginCard(){
     <Card>
       <CardHeader title='Welcome!' titleTypographyProps={{align: 'center'}} />
       <CardContent>
-        <Box sx={{display: 'flex', flexDirection: 'column',}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
           <LoginButton />
           <AddBotButton />
         </Box>
