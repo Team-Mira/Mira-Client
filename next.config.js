@@ -9,6 +9,9 @@ const nextConfig = {
         permanent: false
       }
     ]
+  },
+  images: {
+    domains: ['cdn.discordapp.com']
   }
 }
 
