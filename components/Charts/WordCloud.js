@@ -2,7 +2,7 @@ import React from 'react';
 import ReactWordcloud from 'react-wordcloud';
 
 const options = {
-  colors: ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"],
+  colors: ['#3f4cda'],
   enableTooltip: true,
   deterministic: false,
   fontFamily: "Source Sans Pro",
@@ -20,5 +20,8 @@ const options = {
 export default function WordCloud({data}){
   const { wordCloud } = data
 
-  return <ReactWordcloud options={options} words={wordCloud} />
+  if(wordCloud.length > 0){
+    return <ReactWordcloud options={options} words={wordCloud} />
+  }
+  return <h3>No Words Available</h3>
 }

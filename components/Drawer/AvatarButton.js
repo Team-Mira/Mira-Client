@@ -8,7 +8,10 @@ export default function AvatarButton(props) {
     const { data: session } = useSession()
 
     const handleNav = () => {
-      router.push('/users/' + session.user.id)
+      if(session){
+        router.push('/users/' + session.user.id)
+      }
+      router.push('/')
     }
     return (<IconButton onClick={handleNav}>
         <Avatar alt="discord_avatar" src={session?.user.image} sx={{ p: 0 }}/>

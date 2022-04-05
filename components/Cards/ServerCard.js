@@ -11,17 +11,19 @@ import { dark } from '../../styles/theme/M3colors'
 export default function ServerCard(props){
   const { name, id, members, channels } = props
   const router = useRouter()
-  let channelCount = 0
+  let channelCount = props.channelCount ?? 0
 
-  channels.map(channel => {
-    if(channel.type === 'GUILD_TEXT'){
-      channelCount = channelCount + 1
-    }
-  })
+  if(id !== 'demo'){
+    channels.map(channel => {
+      if(channel.type === 'GUILD_TEXT'){
+        channelCount = channelCount + 1
+      }
+    })
+  }
 
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: dark.surface, color: dark.onSurface, boxShadow: 0, borderRadius: 3}}>
-      <CardActionArea onClick={() => {router.push(`/servers/${id}/overview`)}}
+      <CardActionArea onClick={() => {router.push(`/servers/${id}`)}}
         sx={{display: 'flex', px: 2 }}>
         <Grid container>
           <Grid item>

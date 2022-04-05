@@ -22,13 +22,16 @@ export default function ServersOverview(props){
 
   const router = useRouter()
 
-  if(!session){
-    return(
-      <LoadingCard />
-    )
+  if(router.query.serverId !== 'demo'){
+    if(!session){
+      return(
+        <LoadingCard />
+      )
+    }
   }
 
-  const server = session.user.servers.find(server => server.id === router.query.serverId)
+  const server = router.query.serverId === 'demo' ? {name: 'The Mira Discord'}:
+  session.user.servers.find(server => server.id === router.query.serverId)
 
   if(!server){
     return(
