@@ -83,7 +83,12 @@ export async function getStaticProps(context) {
   const { serverId } = context.params
 
   try{
-    const res = await fetch(`${ADDRESS}report/${serverId}`)
+    let res
+    if(serverId === 'demo'){
+      res = await fetch(`${ADDRESS}report/956985200196350013`)
+    } else {
+      res = await fetch(`${ADDRESS}report/${serverId}`)
+    }
 
     if(res.status !== 200){
       return{
