@@ -8,7 +8,7 @@ export default function Heatmap({data}) {
       dataLabels: {
         enabled: false
       },
-      colors: ['#E91E63'],
+      colors: ['#5865F2'],
       title: {
         text: `${data.name} HeatMap`,
         style: {
@@ -46,6 +46,11 @@ export default function Heatmap({data}) {
         yaxis: {
           lines: {
             show: true
+          },
+          labels: {
+            style: {
+              colors: '#FFFFFF'
+            }
           }
       },
     },
