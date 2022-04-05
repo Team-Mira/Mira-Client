@@ -14,7 +14,26 @@ export default function Servers (props) {
     const router = useRouter()
 
     if(!session){
-        return <h3>Please log in</h3>
+        const server = {name: 'The Mira Discord', channelCount: 4, members: 7, id: 'demo'}
+        return (
+            <>
+                <Grid container spacing={0} sx={{mb: 1}}>
+                    <Grid item xs={1}>
+                        <IconButton size="large" onClick={() => router.push('/')}
+                            sx={{color: dark.onSurface}}>
+                            <NavigateBefore fontSize="inherit" />
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={10} >
+                        <Typography align="center" variant="h3" sx={{color: dark.onSurface}}>Servers</Typography>
+                    </Grid>
+                    <Grid item xs={1} />
+                </Grid>
+                <Stack spacing={2}>
+                    <ServerCard {...server} key={server.id}/>
+                </Stack>
+            </>
+        )
     }
 
     if(status === 'loading'){
@@ -26,6 +45,8 @@ export default function Servers (props) {
             <h4>No servers found</h4>
         )
     }
+
+    console.log(session.user.servers)
 
     return (
         <>
@@ -47,23 +68,3 @@ export default function Servers (props) {
         </>
     )
 }
-
-// export async function getServerSideProps(context) {
-//     const session = await getSession(context)
-
-//     if(session){
-//         return {
-//             props: {
-//             session,
-//             },
-//         }
-//     } else {
-//         return {
-//             redirect: {
-//                 destination: '/',
-//                 permanent: false,
-//             },
-//         }
-//     }
-// }
-
