@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react"
 import SignoutButton from "../../components/Buttons/SignoutButton"
 import AddBotButton from "../../components/Buttons/AddBotButton"
+import LoadingCard from "../../components/Cards/LoadingCard"
 const ADDRESS = process.env.API_URL || 'http://localhost:8080/api/'
 
 export default function User (props) {
@@ -11,6 +12,11 @@ export default function User (props) {
 
   if(status === 'loading'){
     return <h4>Loading</h4>
+  }
+
+  if(session === null){
+    router.push('/')
+    return <LoadingCard />
   }
 
   const { name, id } = session.user
