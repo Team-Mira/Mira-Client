@@ -21,7 +21,6 @@ export default function NavDrawer(){
       onMouseEnter={handleOpen}
       onMouseLeave={handleOpen}
       hideBackdrop={true}
-      hidden={!session ? true : false}
       >
       <Toolbar sx={{justifyContent: 'center'}}>
           <AvatarButton />
