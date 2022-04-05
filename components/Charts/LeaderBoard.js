@@ -20,6 +20,7 @@ export default function LeaderBoard({ data, header }) {
       return [data.users[rank.key].title, rank.value];
     }) || [["No Scores"]];
   }
+
   return (
     <Box sx={{height: 300, position: 'relative', px: 0}}>
       <Table aria-label="simple table">
@@ -41,5 +42,6 @@ export default function LeaderBoard({ data, header }) {
         ))}
       </Table>
     </Box>
+
   );
 }

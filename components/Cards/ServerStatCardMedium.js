@@ -1,11 +1,14 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+
 import DoughnutChart from '../Charts/DoughnutChart';
 import LineChart from '../Charts/LineChart';
 import LineChartSingle from '../Charts/LineChartSingle';
 import NetworkGraph from '../Charts/NetworkGraph';
+import Heatmap from '../Charts/Heatmap'
 import WordCloud from '../Charts/WordCloud';
+
 
 import { dark } from '../../styles/theme/M3colors';
 
@@ -22,9 +25,12 @@ export default function SSCM(props) {
       case 'Activity':
         return <LineChartSingle data={data} />;
       case 'User Map':
-        return <NetworkGraph data={data} />;
+        return <NetworkGraph data={data} />
+      case 'Heat Map':
+        return <Heatmap data = {data} />
       case 'Word Use':
         return <WordCloud data={data} />
+
       default:
         return <></>;
     }
