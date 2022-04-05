@@ -44,12 +44,15 @@ export default function Heatmap({data}) {
           }
         },
         yaxis: {
+          show: true,
           lines: {
             show: true
           },
           labels: {
+            show: true,
             style: {
-              colors: '#FFFFFF'
+              colors: '#FFFFFF',
+              fontSize: '14px'
             }
           }
       },
