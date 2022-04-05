@@ -3,6 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import DoughnutChart from '../Charts/DoughnutChart';
 import LineChart from '../Charts/LineChart';
+import LineChartSingle from '../Charts/LineChartSingle';
 import NetworkGraph from '../Charts/NetworkGraph';
 import WordCloud from '../Charts/WordCloud';
 
@@ -18,6 +19,8 @@ export default function SSCM(props) {
         return <DoughnutChart data={data} />;
       case 'Activity Per Channel':
         return <LineChart data={data} />;
+      case 'Activity':
+        return <LineChartSingle data={data} />;
       case 'User Map':
         return <NetworkGraph data={data} />;
       case 'Word Use':

@@ -20,7 +20,6 @@ export default function LeaderBoard({ data, header }) {
       return [data.users[rank.key].title, rank.value];
     }) || [["No Scores"]];
   }
-  console.log(ranks)
   return (
     <Box sx={{height: 300, position: 'relative', px: 0}}>
       <Table aria-label="simple table">
@@ -28,7 +27,9 @@ export default function LeaderBoard({ data, header }) {
           <TableRow key={"row" + id}>
             {rank.map((cell, i) => {
               if(i === 0 && isNaN(rank[1])){
-                return <TableCell key={"cell" + i}><Image src={rank[1]} alt="emoji-link" height='20px' width='20px' /></TableCell>
+                if(rank.length === 3){
+                  return <TableCell key={"cell" + i}><Image src={rank[1]} alt="emoji-link" height='20px' width='20px' /></TableCell>
+                }
               }
               if(i === 1 && cell !== null && rank.length === 3){
                 return <TableCell key={"cell" + i}>{rank[0]}</TableCell>

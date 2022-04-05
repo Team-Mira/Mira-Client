@@ -2,8 +2,8 @@ import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import NavigateBefore from "@mui/icons-material/NavigateBefore"
-import ServerOverview from "../../../components/Views/ServerOverview"
-import ServerUsers from "../../../components/Views/ServerUsers"
+import ChannelOverview from "../../../components/Views/ChannelOverview"
+import ChannelUsers from "../../../components/Views/ChannelUsers"
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import MenuItem from "@mui/material/MenuItem"
@@ -28,9 +28,19 @@ export default function ServersOverview(props){
     )
   }
 
-  const server = session.user.servers.find(server => server.id === router.query.serverId)
+  const servers = session.user.servers
 
-  if(!server){
+  let channel
+
+  for(let i = 0; i < servers.length; i++){
+    for(let j = 0; j < servers[i].channels.length; j++){
+      if(servers[i].channels[j].id === router.query.channelId){
+        channel = servers[i].channels[j]
+      }
+    }
+  }
+
+  if(!channel){
     return(
       <LoadingCard />
     )
@@ -40,17 +50,20 @@ export default function ServersOverview(props){
     setChoice(target.value)
   }
 
+  console.log(data)
+
   return(
     <>
       <Grid container spacing={0} sx={{mb: 1}}>
         <Grid item xs={1}>
-          <IconButton size="large" onClick={() => router.push('/servers')}>
+          <IconButton size="large" onClick={() => router.push('/channels')}>
             <NavigateBefore fontSize="inherit" />
           </IconButton>
         </Grid>
         <Grid item xs={10} >
           <Stack>
-            <Typography align="center" variant="h3">{server.name}</Typography>
+          <Typography align="center" variant="h4">{channel.name}</Typography>
+            <Typography align="center" variant="h6">{data.guildName}</Typography>
             <Container align="center">
               <Select value={choice} onChange={handleChange}>
                 <MenuItem value="Overview" name="Overview">Overview</MenuItem>
@@ -61,26 +74,26 @@ export default function ServersOverview(props){
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      {choice === 'Overview' ? <ServerOverview data={data} /> : <ServerUsers data={data} /> }
+      {choice === 'Overview' ? <ChannelOverview data={data} /> : <ChannelUsers data={data} /> }
     </>
   )
 }
 
 export async function getStaticPaths() {
-  const res = await fetch( ADDRESS + 'guilds/ids')
+  const res = await fetch( ADDRESS + 'channels/ids')
   const ids = await res.json()
 
   return {
-    paths:ids.map(serverId => ({params: {serverId}})),
+    paths:ids.map(channelId => ({params: {channelId}})),
     fallback: true
   };
 }
 
 export async function getStaticProps(context) {
-  const { serverId } = context.params
+  const { channelId } = context.params
 
   try{
-    const res = await fetch(`${ADDRESS}report/${serverId}`)
+    const res = await fetch(`${ADDRESS}report/channel/${channelId}`)
 
     if(res.status !== 200){
       return{

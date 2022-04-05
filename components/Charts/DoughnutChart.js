@@ -11,7 +11,6 @@ export default function DoughnutChart(props){
     labels: channels.map(channel => {return channel.name}),
     datasets: [
       {
-        label: '# of Messages',
         data: channels.map(channel => {return channel.totalMessages}),
         backgroundColor: channels.map(channel => (channel.colors.main)),
         borderColor: channels.map(channel => (channel.colors.border)),

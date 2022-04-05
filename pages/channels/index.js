@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import NavigateBefore from "@mui/icons-material/NavigateBefore"
-import ServerCard from '../../components/Cards/ServerCard'
+import ChannelsCard from '../../components/Cards/ChannelsCard'
 import { useRouter } from "next/router";
 import { useSession } from 'next-auth/react'
 
@@ -27,6 +27,8 @@ export default function Servers (props) {
         )
     }
 
+    console.log(session.user)
+
     return (
         <>
             <Grid container spacing={0} sx={{mb: 1}}>
@@ -37,12 +39,12 @@ export default function Servers (props) {
                     </IconButton>
                 </Grid>
                 <Grid item xs={10} >
-                    <Typography align="center" variant="h3" sx={{color: dark.onSurface}}>Servers</Typography>
+                    <Typography align="center" variant="h3" sx={{color: dark.onSurface}}>Channels</Typography>
                 </Grid>
                 <Grid item xs={1} />
             </Grid>
             <Stack spacing={2}>
-                {session.user.servers ? session.user.servers.map(server => {return <ServerCard {...server} key={server.id}/>}) : <h3>No Servers</h3>}
+                {session.user.servers ? session.user.servers.map(server => {return <ChannelsCard {...server} key={server.id}/>}) : <h3>No Servers</h3>}
             </Stack>
         </>
     )

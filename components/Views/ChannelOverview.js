@@ -4,9 +4,7 @@ import Stack from "@mui/material/Stack"
 import SSCS from "../Cards/ServerStatCardSmall"
 import SSCM from "../Cards/ServerStatCardMedium"
 
-const charts = [{name: 'Messages Per Channel'}, {name: 'Activity Per Channel'}, {name: 'Word Use'}]
-
-export default function ServerOverview({ data }){
+export default function ChannelOverview({ data }){
 
   const cardData = [
     {name: 'Total Messages', amount: data.totalMessages},
@@ -14,6 +12,14 @@ export default function ServerOverview({ data }){
     {name: 'Total Replies', amount: data.totalReplies},
     {name: 'Active Users', amount: data.activeUsers},
   ]
+
+  const charts = [
+    // {name: 'Messages Per User'},
+    {name: 'Activity'},
+    {name: 'Word Use'}
+  ]
+
+  console.log(data)
 
   return(
     <Grid container spacing={2}>
