@@ -31,7 +31,7 @@ export default function SSCS(props){
 
   return (
     <Card sx={{backgroundColor: dark.surface, boxShadow: 0, borderRadius: 3, px: 2}}>
-      <CardHeader title={name} avatar={cardIcon(name)}/>
+      <CardHeader title={name} avatar={cardIcon(name)} />
       <CardContent>
         <Typography variant="h4">{amount}</Typography>
       </CardContent>

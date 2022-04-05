@@ -21,18 +21,17 @@ export default function LeaderBoard({ data, header }) {
   }
   // console.log(ranks)
   return (
-    // <Box sx={{height: 300, position: 'relative'}}>
-    //   <Table sx={{ minWidth: 650 }} aria-label="simple table">
-    //     <TableHead>{name}</TableHead>
-    //     {ranks.map((rank, id) => (
-    //       <TableRow key={"row" + id}>
-    //         {rank.map((cell, i) => (
-    //           <TableCell key={"cell" + i}>{cell}</TableCell>
-    //         ))}
-    //       </TableRow>
-    //     ))}
-    //   </Table>
-    // </Box>
-    <></>
+    <Box sx={{height: 300, position: 'relative', px: 0}}>
+      <Table aria-label="simple table">
+        {ranks.map((rank, id) => (
+          <TableRow key={"row" + id}>
+            {rank.map((cell, i) => (
+              <TableCell key={"cell" + i}>{cell}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </Table>
+    </Box>
+
   );
 }
