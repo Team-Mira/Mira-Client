@@ -23,7 +23,7 @@ export default function ServerCard(props){
   })
 
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: dark.surface, boxShadow: 0, borderRadius: 3}}>
+    <Card sx={{ maxWidth: 345, backgroundColor: dark.surface, color: dark.onSurface, boxShadow: 0, borderRadius: 3}}>
       <CardActionArea onClick={() => {router.push(`/servers/${id}/overview`)}}
         sx={{display: 'flex', px: 2 }}>
         <Grid container>
@@ -39,10 +39,10 @@ export default function ServerCard(props){
               <Typography gutterBottom variant="h5" component="div">
                 {name}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2">
                 {channelCount} Channels
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2">
                 {members} Users
               </Typography>
             </CardContent>

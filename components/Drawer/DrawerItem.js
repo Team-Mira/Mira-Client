@@ -7,8 +7,6 @@ import Dns from '@mui/icons-material/Dns';
 import Wysiwyg from '@mui/icons-material/Wysiwyg';
 import { useRouter } from 'next/router';
 
-import { dark } from '../../styles/theme/M3colors'
-
 export default function DrawerItem({name, open}){
   const router = useRouter()
   const path = router.pathname.slice(1, name.length + 1)
@@ -22,11 +20,11 @@ export default function DrawerItem({name, open}){
   const drawerIcon = (name) => {
     switch(name){
       case 'Servers':
-        return <Dns sx={{width: 24, height: 24, color: dark.onSurfaceVariant}}/>
+        return <Dns sx={{width: 24, height: 24}} />
       case 'Channels':
-        return <Wysiwyg sx={{width: 24, height: 24, color: dark.onSurfaceVariant}} />
+        return <Wysiwyg sx={{width: 24, height: 24}} />
       default:
-        return <CircleIcon sx={{width: 24, height: 24, color: dark.onSurfaceVariant}} />
+        return <CircleIcon sx={{width: 24, height: 24}} />
     }
   }
 
@@ -34,7 +32,7 @@ export default function DrawerItem({name, open}){
     <DrawerButton open={open} selected={active} onClick={handleNav}>
       <ListItemIcon>{drawerIcon(name)}</ListItemIcon>
       <ListItemText>
-        <Typography sx={{color: dark.onSurfaceVariant, fontWeight: 'bold'}}>{name}</Typography>
+        <Typography sx={{fontWeight: 'bold'}}>{name}</Typography>
       </ListItemText>
     </DrawerButton>
   )

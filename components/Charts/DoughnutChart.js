@@ -22,6 +22,7 @@ export default function DoughnutChart(props){
 
   const options = {
     cutoutPercentage: 80,
+    color: '#ffffff',
     layout: { padding: 0 },
     legend: {
       display: false

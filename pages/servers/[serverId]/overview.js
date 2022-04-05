@@ -3,14 +3,20 @@ import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import NavigateBefore from "@mui/icons-material/NavigateBefore"
 import ServerOverview from "../../../components/Views/ServerOverview"
+import ServerUsers from "../../../components/Views/ServerUsers"
+import Container from "@mui/material/Container"
+import Stack from "@mui/material/Stack"
+import MenuItem from "@mui/material/MenuItem"
+import Select from '@mui/material/Select';
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react"
-import { dark } from '../../../styles/theme/M3colors'
+import { useState } from "react"
 
 const ADDRESS = process.env.API_URL || 'http://localhost:8080/api/'
 
 export default function ServersOverview(props){
   const { data: session, status } = useSession()
+  const [choice, setChoice] = useState('Overview')
   const { data } = props
 
   const router = useRouter()
@@ -29,21 +35,32 @@ export default function ServersOverview(props){
     )
   }
 
+  const handleChange = ({target}) => {
+    setChoice(target.value)
+  }
+
   return(
     <>
       <Grid container spacing={0} sx={{mb: 1}}>
         <Grid item xs={1}>
-          <IconButton size="large" onClick={() => router.push('/servers')}
-            sx={{color: dark.onSurface}}>
+          <IconButton size="large" onClick={() => router.push('/servers')}>
             <NavigateBefore fontSize="inherit" />
           </IconButton>
         </Grid>
         <Grid item xs={10} >
-          <Typography align="center" variant="h3" sx={{color: dark.onSurface}}>{server.name}</Typography>
+          <Stack>
+            <Typography align="center" variant="h3">{server.name}</Typography>
+            <Container align="center">
+              <Select value={choice} onChange={handleChange}>
+                <MenuItem value="Overview" name="Overview">Overview</MenuItem>
+                <MenuItem value="Users" name="Users">Users</MenuItem>
+              </Select>
+            </Container>
+          </Stack>
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      <ServerOverview data={data} />
+      {choice === 'Overview' ? <ServerOverview data={data} /> : <ServerUsers data={data} /> }
     </>
   )
 }

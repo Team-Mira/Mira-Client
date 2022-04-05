@@ -14,6 +14,10 @@ ChartJS.register(
 
 const options = {
   cutoutPercentage: 80,
+  color: '#ffffff',
+  scales: {
+    color: '#ffffff'
+  },
   layout: { padding: 0 },
   legend: {
     display: false
@@ -31,6 +35,7 @@ export default function LineChart({ data }) {
 
   const chartData = {
     labels,
+    color: '#ffffff',
     datasets: channels.map(channel => ({
       label: channel.name,
       data: channel.activity,
