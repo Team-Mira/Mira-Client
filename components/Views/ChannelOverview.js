@@ -14,12 +14,9 @@ export default function ChannelOverview({ data }){
   ]
 
   const charts = [
-    // {name: 'Messages Per User'},
     {name: 'Activity'},
     {name: 'Word Use'}
   ]
-
-  console.log(data)
 
   return(
     <Grid container spacing={2}>

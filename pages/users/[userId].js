@@ -1,6 +1,8 @@
 import React from 'react'
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react"
+import SignoutButton from "../../components/Buttons/SignoutButton"
+import AddBotButton from "../../components/Buttons/AddBotButton"
 const ADDRESS = process.env.API_URL || 'http://localhost:8080/api/'
 
 export default function User (props) {
@@ -13,15 +15,18 @@ export default function User (props) {
 
   const { name, id } = session.user
 
-  console.log(props.user)
   if(router.query.userId!== id){
     return <h4>You can not access this page</h4>
   }
 
   return (
-  
+  <>
   <h1>Hello, {name}!</h1>
-  
+  <SignoutButton />
+  <br />
+  <br />
+  <AddBotButton />
+  </>
   )
 }
 

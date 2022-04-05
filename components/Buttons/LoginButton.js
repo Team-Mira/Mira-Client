@@ -7,7 +7,7 @@ export default function LoginButton(){
   }
 
   return(
-    <Button variant="outlined" size="large" onClick={handleLogin}>
+    <Button variant="contained" size="large" onClick={handleLogin}>
       Login With Discord
     </Button>
   )

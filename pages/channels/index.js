@@ -27,13 +27,19 @@ export default function Servers (props) {
         )
     }
 
-    console.log(session.user)
+    const handleBack = () => {
+        if(session){
+            router.push(`/users/${session.user.id}`)
+            return
+        }
+        router.push(`/`)
+    }
 
     return (
         <>
             <Grid container spacing={0} sx={{mb: 1}}>
                 <Grid item xs={1}>
-                    <IconButton size="large" onClick={() => router.push('/')}
+                    <IconButton size="large" onClick={handleBack}
                         sx={{color: dark.onSurface}}>
                         <NavigateBefore fontSize="inherit" />
                     </IconButton>
